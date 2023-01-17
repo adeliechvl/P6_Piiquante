@@ -1,8 +1,10 @@
 const express = require('express');
-
 const mongoose = require('mongoose');
+const path = require('path');
+const userRoutes = require('./routes/user');
 
-mongoose.connect('mongodb+srv://adeliechvl:Myfriendisponey1*@cluster0.p1p0ruj.mongodb.net/?retryWrites=true&w=majority',
+
+mongoose.connect(process.env.SECRET_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -17,23 +19,9 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use((req, res, next) => {
-  console.log('Requête reçue !');
-  next();
-});
-
-app.use((req, res, next) => {
-  res.status(201);
-  next();
-});
-
-app.use((req, res, next) => {
-  res.json({ message: 'Votre requête a bien été reçue !' });
-  next();
-});
-
-app.use((req, res, next) => {
-  console.log('Réponse envoyée avec succès !');
-});
+app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/api/sauces', sauceRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
