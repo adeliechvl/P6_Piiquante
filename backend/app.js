@@ -1,10 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
+require('dotenv').config();
 
-mongoose.connect(process.env.SECRET_DB,
+// CONNEXION A BASE DE DONNEE MONGOOSE
+mongoose.connect('mongodb+srv://adeliechvl:Myfriendisponey1*@cluster0.p1p0ruj.mongodb.net/?retryWrites=true&w=majority/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -12,6 +17,7 @@ mongoose.connect(process.env.SECRET_DB,
 
 const app = express();
 
+// MIDDLEWARE POUR DEBLOQUER SYSTEMES DE SECURITE CORS
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');

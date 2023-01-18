@@ -6,6 +6,7 @@ const MIME_TYPES = {
   'image/png': 'png'
 };
 
+// MULTER POUR ENREGISTRER LES FICHIERS IMAGES
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, 'images');

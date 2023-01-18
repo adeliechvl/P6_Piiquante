@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+const sauceCtrl = require('../controllers/sauce');
+
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
-
-const sauceCtrl = require('../controllers/sauce');
+const checkSauceInput = require('../middleware/check-sauce-input');
 
 router.post('/', auth, multer, checkSauceInput, sauceCtrl.createSauce); // Route qui permet de créer une sauce
 router.put('/:id', auth, multer, sauceCtrl.modifySauce); // Route qui permet de modifier une sauce
