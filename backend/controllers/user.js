@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt'); // HASH LE MDP
 const jwt = require('jsonwebtoken'); // ATTRIBUE TOKEN
 
-const User = require("../models/user");
+const User = require("../models/User");
 
 // SAUVEGARDE NOUVEL UTILISATEUR ET HASH SON MDP AVEC BCRYPT
 exports.signup = (req, res, next) => {
@@ -32,7 +32,7 @@ exports.login = (req, res, next) => {
                 }
                 res.status(200).json({
                     userId: user._id,
-                    token: jwt.sign({ userId: user._id }, 'SECRET_TOKEN', {
+                    token: jwt.sign({ userId: user._id }, 'mongodb', {
                         expiresIn: '24h',
                     }),
                 });

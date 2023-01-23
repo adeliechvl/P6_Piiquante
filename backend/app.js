@@ -9,7 +9,7 @@ const userRoutes = require('./routes/user');
 require('dotenv').config();
 
 // CONNEXION A BASE DE DONNEE MONGOOSE
-mongoose.connect('mongodb+srv://adeliechvl:Myfriendisponey1*@cluster0.p1p0ruj.mongodb.net/?retryWrites=true&w=majority/?retryWrites=true&w=majority',
+mongoose.connect(process.env.mongodb,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
