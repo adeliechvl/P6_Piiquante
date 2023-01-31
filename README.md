@@ -1,27 +1,38 @@
 # HotTakes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+Projet n°6 - Construire une API sécurisée pour une application d'avis gastronomiques
 
-## Development server
+## Objectifs
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Développer le back-end d'une application web de critiques des sauces piquantes appelée "Hot Takes" pour la marque de condiments à base de piment "Piiquante". Le front-end est déjà fourni, il ne faut pas le modifier.
 
-## Code scaffolding
+Réaliser une galerie des sauces permettant aux utilisateurs de télécharger leurs sauces piquantes préférées et de liker ou disliker les sauces que d'autres partagent.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Implémenter des techniques de sécurité : sécuriser les mots de passe des utilisateurs
 
-## Build
+## Langages et frameworks uilisés 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Développement back-end réalisé avec JavaScript, serveur Node.js. Utilisation du framework Express. Utilisation de la base de données MongoDB. Plug-in Mongoose.
 
-## Running unit tests
+## Lancer l'application
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1 - Dans un nouvel espace de travail créez un dossier frontend et un autre dossier backend.
 
-## Running end-to-end tests
+2 - Dans le dossier frontend :
+-> Clonez le repository de cette adresse : https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6.
+-> Dans le terminal du frontend installez Node.js, Angular CLI, node-sass
+-> Lancez le terminal du frontend avec "run npm install" puis "ng serve"
+-> Le frontend se lancera normalement à cette adresse "http://localhost:4200"
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3 - Dans le dossier backend :
+-> Dans le terminal du backend installez Nodemon
+-> Lancez le serveur avec "nodemon server"
+-> Les informations du backend se trouverons à cette adresse : "http://localhost:3000"
 
-## Further help
+## Mesures de sécurités mises en place
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+-> Hashage du mot de passe utilisateur avec "bcrypt"
+-> Vérification que l'adresse email de l'utilisateur est unique dans la base de données avec "mongoose-unique-validator"
+-> Vérification de l'authentification de l'utilisateur avec un token avec "jsonwebtoken"
+-> Base de donnée sécurisée avec "mongoose"
+-> Création de variable d'environnement pour protéger les données sensibles des utilisateurs avec "dotenv"
