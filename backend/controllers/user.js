@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt'); // HASH LE MDP
+
 const jwt = require('jsonwebtoken'); // ATTRIBUE TOKEN
+
 require('dotenv').config();
+
 const User = require("../models/User");
 
 // SAUVEGARDE NOUVEL UTILISATEUR ET HASH SON MDP AVEC BCRYPT

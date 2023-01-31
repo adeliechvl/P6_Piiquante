@@ -1,4 +1,5 @@
 const Sauce = require('../models/sauce');
+
 const fs = require('fs');
 
 // CREER UNE SAUCE
@@ -26,7 +27,7 @@ exports.modifySauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
       .then((sauce) => {
         if (req.auth.userId != sauce.userId) {
-          res.status(403).json({ error: "Non autorisé" });
+          res.status(403).json({ error: "403: unauthorized request" });
           return;
         }
         const filename = sauce.imageUrl.split("/images/")[1];
@@ -62,21 +63,17 @@ exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
       if (sauce.userId != req.auth.userId) {
-        res.status(403).json({ message: "Non autorisé" });
+        res.status(403).json({ message: "403: unauthorized request" });
         return;
       }
-      const filename = sauce.imageUrl.split("/images/")[1];
+      const filename = sauce.imageUrl.split('/images/')[1];
       fs.unlink(`images/${filename}`, () => {
         Sauce.deleteOne({ _id: req.params.id })
-          .then(() => {
-            res.status(200).json({ message: "Sauce supprimée" });
-          })
-          .catch((error) => res.status(401).json({ error }));
+          .then(() => res.status(200).json({ message: "Sauce supprimée" }))
+          .catch((error) => res.status(400).json({ error }));
       });
     })
-    .catch((error) => {
-      res.status(500).json({ error });
-    });
+    .catch((error) => res.status(500).json({ error }));
 };
 
 // RECUPERER UNE SAUCE
@@ -102,7 +99,7 @@ exports.likeDislikeSauce = (req, res, next) => {
     switch (like) {
       case 1:
         if (sauce.usersLiked.includes(req.userId)) {
-          res.status(400).json({ message: 'Impossible de faire cette action' });
+          res.status(400).json({ message: '403: unauthorized request' });
           return;
         }
         // LIKE
